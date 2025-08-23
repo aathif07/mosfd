@@ -2,41 +2,73 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Light beam hero design system with cosmic elegance */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Light theme base colors */
+    --background: 0 0% 99%;
+    --foreground: 222 84% 4.9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card system */
+    --card: 0 0% 98%;
+    --card-foreground: 222 84% 4.9%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 222 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Deep cosmic blue */
+    --primary: 218 100% 25%;
+    --primary-foreground: 0 0% 98%;
+    --primary-glow: 218 100% 50%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Light cosmic tones */
+    --secondary: 220 20% 95%;
+    --secondary-foreground: 218 100% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted tones */
+    --muted: 220 20% 96%;
+    --muted-foreground: 220 10% 40%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent - Bright cosmic blue */
+    --accent: 218 100% 50%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 20% 90%;
+    --input: 220 20% 94%;
+    --ring: 218 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Light beam gradients */
+    --gradient-beam: linear-gradient(135deg, 
+      hsla(218, 100%, 90%, 0.3) 0%, 
+      hsla(218, 100%, 95%, 0.6) 25%,
+      hsla(0, 0%, 100%, 1) 50%,
+      hsla(218, 100%, 95%, 0.6) 75%,
+      hsla(218, 100%, 90%, 0.3) 100%);
+    
+    --gradient-cosmic: radial-gradient(ellipse at center,
+      hsla(218, 100%, 98%, 1) 0%,
+      hsla(218, 100%, 96%, 0.8) 30%,
+      hsla(218, 100%, 94%, 0.4) 70%,
+      hsla(218, 50%, 90%, 0.1) 100%);
+
+    --gradient-text: linear-gradient(135deg,
+      hsl(218, 100%, 25%) 0%,
+      hsl(218, 100%, 35%) 50%,
+      hsl(218, 100%, 45%) 100%);
+
+    /* Glow effects */
+    --glow-primary: 0 0 40px hsla(218, 100%, 50%, 0.3);
+    --glow-accent: 0 0 60px hsla(218, 100%, 50%, 0.2);
+    
+    /* Animation variables */
+    --beam-duration: 8s;
+    --pulse-duration: 3s;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +133,128 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Light beam effects */
+  .light-beam-bg {
+    background: var(--gradient-cosmic);
+    position: relative;
+  }
+
+  .light-beam-bg::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-beam);
+    opacity: 0.7;
+    animation: beam-sweep var(--beam-duration) ease-in-out infinite;
+  }
+
+  .light-beam-overlay {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Typography */
+  .hero-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .glow-text {
+    text-shadow: var(--glow-primary);
+  }
+
+  /* Buttons */
+  .btn-cosmic {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)) 0%, 
+      hsl(var(--accent)) 100%);
+    box-shadow: var(--glow-accent);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-cosmic:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--glow-accent), 0 10px 25px hsla(218, 100%, 50%, 0.2);
+  }
+
+  .btn-outline-cosmic {
+    border: 2px solid hsl(var(--accent));
+    background: hsla(218, 100%, 50%, 0.05);
+    backdrop-filter: blur(10px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-outline-cosmic:hover {
+    background: hsla(218, 100%, 50%, 0.1);
+    transform: translateY(-1px);
+    box-shadow: 0 5px 20px hsla(218, 100%, 50%, 0.15);
+  }
+
+  /* Floating elements */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+}
+
+@layer utilities {
+  .text-cosmic {
+    @apply hero-text;
+  }
+}
+
+/* Keyframe animations */
+@keyframes beam-sweep {
+  0%, 100% {
+    transform: translateX(-100%) skewX(25deg);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(100%) skewX(25deg);
+    opacity: 1;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: var(--glow-primary);
+  }
+  50% {
+    box-shadow: var(--glow-accent);
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
