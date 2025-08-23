@@ -8,14 +8,14 @@
   :root {
     /* Light theme base colors */
     --background: 0 0% 99%;
-    --foreground: 222 84% 4.9%;
+    --foreground: 0 0% 100%;
 
     /* Card system */
     --card: 0 0% 98%;
-    --card-foreground: 222 84% 4.9%;
+    --card-foreground: 0 0% 100%;
 
     --popover: 0 0% 98%;
-    --popover-foreground: 222 84% 4.9%;
+    --popover-foreground: 0 0% 100%;
 
     /* Primary - Deep cosmic blue */
     --primary: 218 100% 25%;
