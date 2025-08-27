@@ -2,8 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, Sparkles, Zap, X } from "lucide-react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [showLoginModal, setShowLoginModal] = useState(false);
   
   return (
@@ -47,7 +49,7 @@ A workfoce of marketing agents in your hand. </p>
                   variant="cosmic" 
                   size="lg" 
                   className="group"
-                  onClick={() => setShowLoginModal(true)}
+                  onClick={() => navigate('/dashboard')}
                 >
                   Get Started
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -130,9 +132,13 @@ A workfoce of marketing agents in your hand. </p>
                 />
               </div>
 
-              <Button
+            <Button
                 className="w-full text-lg py-4 mt-8 rounded-xl bg-white text-black hover:bg-gray-100 font-semibold"
                 type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/dashboard');
+                }}
               >
                 Sign In
                 <ArrowRight className="ml-2 w-5 h-5" />
