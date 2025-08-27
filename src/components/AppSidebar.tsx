@@ -11,6 +11,7 @@ import {
   Plus,
   Play
 } from "lucide-react";
+// Force refresh to clear FileTemplate cache
 import { NavLink, useLocation } from "react-router-dom";
 
 import {
