@@ -8,11 +8,11 @@
   :root {
     /* Light theme base colors */
     --background: 0 0% 99%;
-    --foreground: 0 0% 100%;
+    --foreground: 220 15% 20%;
 
     /* Card system */
     --card: 0 0% 98%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
 
     --popover: 0 0% 98%;
     --popover-foreground: 0 0% 100%;
